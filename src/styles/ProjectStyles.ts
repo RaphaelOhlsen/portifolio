@@ -31,6 +31,12 @@ export const ProjectContainer = styled.div`
     div.buttons {
       display: flex;
       justify-content: space-around;
+
+      @media (max-width: 450px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     p,
@@ -60,6 +66,7 @@ export const ProjectContainer = styled.div`
 
     li {
       margin-bottom: 0.3rem;
+      font-size: 1.3rem;
     }
 
     img {
@@ -70,7 +77,7 @@ export const ProjectContainer = styled.div`
 
     button {
       background: ${({ theme }) => theme.primary};
-      padding: 0.8rem 3rem;
+      padding: 0.8rem 1rem;
       border-radius: 0.5rem;
       border: none;
       transition: 0.5s;
@@ -98,12 +105,22 @@ export const ProjectContainer = styled.div`
         font-size: 1rem;
       }
 
+      li {
+        font-size: 1rem;
+      }
+
       button {
         padding: 0.7rem 2rem;
 
         a {
           font-size: 0.9rem;
         }
+      }
+    }
+
+    @media (max-width: 510px) {
+      button {
+        padding: 0.35rem 1rem;
       }
     }
   }
