@@ -22,7 +22,7 @@ export default function Footer() {
         </button>
         <section>
           <AiOutlineTwitter
-            onClick={() => handleRedirect('https://twitter.com/')}
+            onClick={() => handleRedirect('https://twitter.com/Raphael_Ohlsen')}
           />
           <AiOutlineGithub
             onClick={() => handleRedirect('https://github.com/RaphaelOhlsen')}
