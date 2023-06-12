@@ -13,6 +13,10 @@ export const ProjectContainer = styled.div`
     width: 100%;
     padding: 0 5rem;
 
+    h2 {
+      color: ${({ theme }) => theme.textLight};
+    }
+
     pre {
       display: inline-block;
       white-space: pre;
