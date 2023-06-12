@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as prismicH from '@prismicio/helpers';
 import Head from 'next/head';
 import { AiFillGithub } from 'react-icons/ai';
@@ -24,6 +25,26 @@ export default function ProjectPage({ project }: ProjectProps) {
 
       <main className="container">
         <Content content={project?.content} />
+        <section className="tecnologias">
+          <h2>Tecnologias</h2>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}
+          >
+            {project.technologies.map((technologie, idx) => (
+              <img
+                key={`tec-${idx}`}
+                style={{ width: '200px', height: 'auto', margin: '10px' }}
+                src={technologie}
+                alt="technologie"
+              />
+            ))}
+          </div>
+        </section>
+
         <div className="buttons">
           {project.link.url && (
             <button type="button">
@@ -54,13 +75,18 @@ export async function getStaticProps({ params, previewData }) {
 
   const projectResponse = await client.getByUID('project', params.uid);
 
+  const technologies = projectResponse.data.slices[0].items.map(
+    technologie => technologie.image.url
+  );
+
   const project = {
     title: projectResponse.data.title,
     type: projectResponse.data.type,
     link: projectResponse.data.link,
     image: projectResponse.data.thumbnail.url,
     content: projectResponse.data.description,
-    github: projectResponse.data.github
+    github: projectResponse.data.github,
+    technologies
   };
 
   return {

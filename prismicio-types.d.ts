@@ -41,7 +41,23 @@ interface ExperienceDocumentData {
    *
    */
   description: prismicT.KeyTextField;
+  /**
+   * Slice Zone field in *Experience*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<ExperienceDocumentDataSlicesSlice>;
 }
+/**
+ * Slice for *Experience → Slice Zone*
+ *
+ */
+type ExperienceDocumentDataSlicesSlice = TechnologiesSlice;
 /**
  * Experience document from Prismic
  *
@@ -152,7 +168,7 @@ interface ProjectDocumentData {
  * Slice for *Project → Slice Zone*
  *
  */
-type ProjectDocumentDataSlicesSlice = never;
+type ProjectDocumentDataSlicesSlice = TechnologiesSlice;
 /**
  * Project document from Prismic
  *
@@ -245,6 +261,52 @@ export type AllDocumentTypes =
   | ExperienceDocument
   | ProjectDocument
   | SettingsDocument;
+/**
+ * Item in Technologies → Items
+ *
+ */
+export interface TechnologiesSliceDefaultItem {
+  /**
+   * image field in *Technologies → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: technologies.items[].image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  image: prismicT.ImageField<never>;
+}
+/**
+ * Default variation for Technologies Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TechnologiesSliceDefault = prismicT.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  Simplify<TechnologiesSliceDefaultItem>
+>;
+/**
+ * Slice variation for *Technologies*
+ *
+ */
+type TechnologiesSliceVariation = TechnologiesSliceDefault;
+/**
+ * Technologies Shared Slice
+ *
+ * - **API ID**: `technologies`
+ * - **Description**: `Technologies`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TechnologiesSlice = prismicT.SharedSlice<
+  'technologies',
+  TechnologiesSliceVariation
+>;
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -255,13 +317,18 @@ declare module '@prismicio/client' {
   namespace Content {
     export type {
       ExperienceDocumentData,
+      ExperienceDocumentDataSlicesSlice,
       ExperienceDocument,
       ProjectDocumentData,
       ProjectDocumentDataSlicesSlice,
       ProjectDocument,
       SettingsDocumentData,
       SettingsDocument,
-      AllDocumentTypes
+      AllDocumentTypes,
+      TechnologiesSliceDefaultItem,
+      TechnologiesSliceDefault,
+      TechnologiesSliceVariation,
+      TechnologiesSlice
     };
   }
 }

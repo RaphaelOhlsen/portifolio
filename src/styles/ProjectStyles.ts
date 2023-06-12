@@ -13,8 +13,14 @@ export const ProjectContainer = styled.div`
     width: 100%;
     padding: 0 5rem;
 
-    h2 {
-      color: ${({ theme }) => theme.textLight};
+    section.tecnologias {
+      margin: 2rem 0;
+
+      h2 {
+        color: ${({ theme }) => theme.primary};
+        text-align: center;
+        margin: 1rem;
+      }
     }
 
     pre {

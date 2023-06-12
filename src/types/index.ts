@@ -45,6 +45,7 @@ export interface ProjectProps {
     github: {
       url: string;
     };
+    technologies: string[];
   };
 }
 
